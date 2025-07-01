@@ -374,6 +374,12 @@ impl From<::core::net::SocketAddr> for Endpoint {
     }
 }
 
+impl From<Endpoint> for core::net::SocketAddr {
+    fn from(x: Endpoint) -> core::net::SocketAddr {
+        core::net::SocketAddr::new(x.addr.into(), x.port)
+    }
+}
+
 #[cfg(feature = "proto-ipv4")]
 impl From<::core::net::SocketAddrV4> for Endpoint {
     fn from(x: ::core::net::SocketAddrV4) -> Endpoint {
